@@ -1,0 +1,82 @@
+{
+    "name": "AllGameActions",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "773bbabe-05fe-466b-9c34-bb68f0af4d17",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "3659167c-c280-46da-a512-252d0fe15b14",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "96e7e1ca-a6d3-451e-8449-f954cddf5307",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "UI",
+            "id": "d5fbc27d-77e7-45cb-a5d9-12043110e11d",
+            "actions": [
+                {
+                    "name": "Start",
+                    "type": "Button",
+                    "id": "bbe24ca6-6874-44df-a942-7fce13a68980",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Restart",
+                    "type": "Button",
+                    "id": "d601f58e-ccdf-48fa-bf35-6d32db6472e7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ad296fcb-18d6-41e2-bede-4e31b41bbd9f",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Start",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f5489e6e-91d2-41fc-9548-8bdd0c46a05c",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Restart",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
