@@ -6,6 +6,7 @@ public class GameController : MonoBehaviour
 {
     [SerializeField] private GameObject StartBtn;
     [SerializeField] private GameObject RestartBtn;
+    [SerializeField] private GameObject MoveBtn;
     
     public static PlayerInput input;
     public static bool IsStarted { get; private set; }
@@ -14,6 +15,7 @@ public class GameController : MonoBehaviour
     {
         yield return new WaitUntil(() => input.actions["Start"].ReadValue<float>() > 0);
         IsStarted = true;
+        StartBtn.SetActive(false);
         yield return null;
     }
     
@@ -24,11 +26,21 @@ public class GameController : MonoBehaviour
         RestartBtn.SetActive(false);
         yield return null;
     }
+    
+    public IEnumerator ListenGame()
+    {
+        yield return new WaitUntil(() => IsStarted);
+        MoveBtn.SetActive(true);
+        yield return null;
+    }
 
     private void Awake()
     {
+        input = GetComponent<PlayerInput>();
         RestartBtn.SetActive(false);
+        MoveBtn.SetActive(false);
         StartCoroutine(ListenStart());
         StartCoroutine(ListenRestart());
+        StartCoroutine(ListenGame());
     }
 }
