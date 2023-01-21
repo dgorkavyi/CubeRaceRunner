@@ -35,6 +35,7 @@ public class PlayerColisions : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
+        if(!GameController.IsStarted) return;
         if (other.gameObject.TryGetComponent<Pickupable>(out Pickupable cube))
         {
             CubeCollision(cube);

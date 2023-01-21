@@ -12,11 +12,6 @@ public class PlayerDefeat : MonoBehaviour
         _ragdoll.transform.parent = null;
     }
 
-    public void DeletePlayer()
-    {
-        PlayerSpawner.Instance.DeletePlayer();
-    }
-
     private void Awake()
     {
         _container = GetComponentInChildren<CubeContainer>();

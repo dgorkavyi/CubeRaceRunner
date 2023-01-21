@@ -29,13 +29,8 @@ public class CubeContainer : MonoBehaviour
     private void Dettach(Pickupable cube)
     {
         cube.transform.parent = null;
-
-        if (cube.TryGetComponent<BoxCollider>(out BoxCollider col))
-        {
-            col.enabled = true;
-        }
-        
-        cube.gameObject.AddComponent<Rigidbody>();
+        var rb = cube.gameObject.AddComponent<Rigidbody>();
+        rb.mass = 10;
     }
 
     public void Add(Pickupable cube)

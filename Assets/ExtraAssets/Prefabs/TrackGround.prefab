@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 8635103698508136599}
   - component: {fileID: -7258788466334291340}
   - component: {fileID: 5503849354569763530}
+  - component: {fileID: 6313525704669364889}
   m_Layer: 0
   m_Name: TrackGround
   m_TagString: Untagged
@@ -143,6 +144,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6313525704669364889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8635103698508136598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abd92311502e21841a9ac4de6e6ed803, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _items:
+  - {fileID: 4386205240525089395, guid: 828753de0d7ef1542a61886cc98aecbc, type: 3}
+  - {fileID: 4386205240525089395, guid: b97bf87d6c53f1e46b000f26761eeb65, type: 3}
+  - {fileID: 4386205240525089395, guid: 0f4935f15cc619b42b1b1efab50efa48, type: 3}
+  - {fileID: 4386205240525089395, guid: b89194e6407d46e44971a29b894acb2f, type: 3}
+  - {fileID: 4386205240525089395, guid: 15895d965d7738f47909f8ad7bc7437b, type: 3}
 --- !u!1001 &4652582932834349785
 PrefabInstance:
   m_ObjectHideFlags: 0

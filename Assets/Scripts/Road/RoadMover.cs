@@ -11,6 +11,7 @@ public class RoadMover : MonoBehaviour
     public Coroutine MoveRoadsCoroutine;
     public static Action MoveAllToZero;
     public static RoadMover Instance;
+    private Vector3 PosOfReInit = new Vector3();
 
     public void StopMoveRoadsCoroutine() {
         Instance.StopCoroutine(MoveRoadsCoroutine);
@@ -29,9 +30,9 @@ public class RoadMover : MonoBehaviour
         _generator = GetComponent<RoadGenerator>();
 
         yield return new WaitUntil(() => _generator.IsGenerated);
+        PositionRoads(_generator.Roads);
         yield return new WaitUntil(() => GameController.IsStarted);
 
-        PositionRoads(_generator.Roads);
 
         while (GameController.IsStarted)
         {
