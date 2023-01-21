@@ -16,8 +16,9 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private RoadMover _roadMover;
 
+    public static GameController _instance;
     public static PlayerInput input;
-    public static bool IsStarted { get; private set; }
+    public static bool IsStarted { get; private set; } = false;
 
     public IEnumerator ListenStart()
     {
@@ -30,8 +31,8 @@ public class GameController : MonoBehaviour
     public IEnumerator ListenRestart()
     {
         yield return new WaitUntil(() => input.actions["Restart"].ReadValue<float>() > 0);
-        IsStarted = true;
         _restartBtn.SetActive(false);
+        RestartLevel();
         yield return null;
     }
 
@@ -42,8 +43,22 @@ public class GameController : MonoBehaviour
         yield return null;
     }
 
+    private void RestartLevel() {
+        // move all on start position and wait for 3 sec before start again
+        IsStarted = true;
+    }
+
+    public static void Defeat() {
+        IsStarted = false;
+        _instance._moveBtn.SetActive(false);
+
+        // ruin box container, add them rigidbody and turnRagdoll ON
+        _instance._restartBtn.SetActive(true);
+    }
+
     private void Awake()
     {
+        _instance = this;
         input = GetComponent<PlayerInput>();
         _restartBtn.SetActive(false);
         _moveBtn.SetActive(false);

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,7 @@ public class RoadMover : MonoBehaviour
 {
     private RoadGenerator _generator;
     private float _step = 30f;
+    public static event Action MoveAllToZero;
 
     public void MoveToZero()
     {
@@ -35,7 +37,7 @@ public class RoadMover : MonoBehaviour
             _generator.Roads.Remove(road);
             _generator.SetRoads(_generator.Roads.Append(road).ToList());
             road.transform.localPosition = NextPos;
-            MoveToZero();
+            MoveAllToZero.Invoke();
         }
     }
 
@@ -52,6 +54,7 @@ public class RoadMover : MonoBehaviour
 
     void Start()
     {
+        MoveAllToZero += MoveToZero;
         StartCoroutine(MoveRoads());
     }
 
