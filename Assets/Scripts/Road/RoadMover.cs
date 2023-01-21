@@ -9,7 +9,6 @@ public class RoadMover : MonoBehaviour
     private RoadGenerator _generator;
     private float _step = 30f;
     public Coroutine MoveRoadsCoroutine;
-    // public static Action MoveAllToZero;
     public static RoadMover Instance;
     private Vector3 PosOfReInit = new Vector3(0,0, 210);
 
@@ -45,7 +44,6 @@ public class RoadMover : MonoBehaviour
             _generator.SetRoads(_generator.Roads.Append(road).ToList());
             road.transform.localPosition = NextPos;
             if (NextPos.z == PosOfReInit.z) road.GetComponent<WallSpawner>().Init();
-            // MoveAllToZero.Invoke();
         }
     }
 
@@ -63,7 +61,6 @@ public class RoadMover : MonoBehaviour
     void Start()
     {
         Instance = this;
-        // MoveAllToZero += MoveToZero;
         MoveRoadsCoroutine = StartCoroutine(MoveRoads());
     }
 

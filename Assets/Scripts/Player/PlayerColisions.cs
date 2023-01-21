@@ -3,7 +3,8 @@ using System.Collections;
 
 public class PlayerColisions : MonoBehaviour
 {
-    [SerializeField] private ParticleSystem StackEffect;
+    [SerializeField]
+    private ParticleSystem StackEffect;
     private CubeContainer _container;
     private bool _doNotCollide;
 
@@ -15,11 +16,7 @@ public class PlayerColisions : MonoBehaviour
         GetComponentInChildren<Animator>().Play("Jumping");
         StackEffect.Play();
     }
-// 7.4 14.22 38.73
-// -10.45 15.45 -3.7
 
-// 3.5 7.5 -14.73
-// 13 -13.7 -7.6
     private void WallCollision(WallColumn wall)
     {
         if (_doNotCollide)

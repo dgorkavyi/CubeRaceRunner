@@ -52,7 +52,6 @@ public class GameController : MonoBehaviour
     public static void Defeat()
     {
         RoadMover.Instance.StopMoveRoadsCoroutine();
-        // RoadMover.MoveAllToZero = null;
         IsStarted = false;
         PlayerDefeat.Instance.Defeat();
         _instance._moveBtn.SetActive(false);
