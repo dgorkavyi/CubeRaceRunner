@@ -20,7 +20,7 @@ public class PlayerMove : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _input = GetComponent<PlayerInput>();
-        RoadMover.MoveAllToZero += MoveBack;
+        // RoadMover.MoveAllToZero += MoveBack;
     }
 
     private void FixedUpdate()
