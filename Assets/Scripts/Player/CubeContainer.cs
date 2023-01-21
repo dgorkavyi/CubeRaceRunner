@@ -11,16 +11,30 @@ public class CubeContainer : MonoBehaviour
 
     private void Attach(Pickupable cube)
     {
+        cube.enabled = false;
         cube.transform.parent = transform;
         cube.transform.localPosition = Vector3.down * (Count + 1);
         cube.transform.localRotation = Quaternion.Euler(Vector3.zero);
         cube.GetComponent<BoxCollider>().enabled = false;
     }
 
+    public void DettachAllInContainer()
+    {
+        foreach (Pickupable item in GetComponentsInChildren<Pickupable>())
+        {
+            Dettach(item);
+        }
+    }
+
     private void Dettach(Pickupable cube)
     {
         cube.transform.parent = null;
-        cube.GetComponent<BoxCollider>().enabled = true;
+
+        if (cube.TryGetComponent<BoxCollider>(out BoxCollider col))
+        {
+            col.enabled = true;
+        }
+        
         cube.gameObject.AddComponent<Rigidbody>();
     }
 
@@ -30,7 +44,8 @@ public class CubeContainer : MonoBehaviour
         Attach(cube);
     }
 
-    public IEnumerator DestroyDettached(List<Pickupable> cubes) {
+    public IEnumerator DestroyDettached(List<Pickupable> cubes)
+    {
         yield return new WaitForSeconds(2f);
         cubes.ForEach(item => Destroy(item.gameObject));
     }
@@ -42,7 +57,8 @@ public class CubeContainer : MonoBehaviour
         _cubes = _cubes.Skip(value).ToList();
         _cubes.Reverse();
 
-        cubesToRemove.ForEach(cube => {
+        cubesToRemove.ForEach(cube =>
+        {
             Dettach(cube);
         });
 

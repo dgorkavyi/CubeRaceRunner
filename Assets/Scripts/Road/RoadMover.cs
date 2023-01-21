@@ -8,7 +8,13 @@ public class RoadMover : MonoBehaviour
 {
     private RoadGenerator _generator;
     private float _step = 30f;
-    public static event Action MoveAllToZero;
+    public Coroutine MoveRoadsCoroutine;
+    public static Action MoveAllToZero;
+    public static RoadMover Instance;
+
+    public void StopMoveRoadsCoroutine() {
+        Instance.StopCoroutine(MoveRoadsCoroutine);
+    }
 
     public void MoveToZero()
     {
@@ -54,8 +60,9 @@ public class RoadMover : MonoBehaviour
 
     void Start()
     {
+        Instance = this;
         MoveAllToZero += MoveToZero;
-        StartCoroutine(MoveRoads());
+        MoveRoadsCoroutine = StartCoroutine(MoveRoads());
     }
 
     void Update() { }

@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -43,16 +44,18 @@ public class GameController : MonoBehaviour
         yield return null;
     }
 
-    private void RestartLevel() {
-        // move all on start position and wait for 3 sec before start again
-        IsStarted = true;
+    private void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    public static void Defeat() {
+    public static void Defeat()
+    {
+        RoadMover.Instance.StopMoveRoadsCoroutine();
+        RoadMover.MoveAllToZero = null;
         IsStarted = false;
+        PlayerDefeat.Instance.Defeat();
         _instance._moveBtn.SetActive(false);
-
-        // ruin box container, add them rigidbody and turnRagdoll ON
         _instance._restartBtn.SetActive(true);
     }
 
