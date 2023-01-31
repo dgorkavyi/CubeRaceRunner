@@ -12,6 +12,8 @@ public class PlayerColisions : MonoBehaviour
     {
         if (_doNotCollide)
             return;
+            
+        cube.isTaken = true;
         _container.Add(cube);
         GetComponentInChildren<Animator>().Play("Jumping");
         StackEffect.Play();
@@ -41,7 +43,7 @@ public class PlayerColisions : MonoBehaviour
         _doNotCollide = false;
     }
 
-    private void Start()
+    private void Awake()
     {
         _doNotCollide = false;
         _container = GetComponentInChildren<CubeContainer>();

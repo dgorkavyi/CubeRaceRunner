@@ -1,23 +1,29 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CubeSpawner : MonoBehaviour
 {
     [SerializeField]
-    private GameObject CubePrefab;
+    private Pickupable CubePrefab;
 
     [SerializeField]
     private float Distance = 0.09f;
 
+    private bool _canInit = true;
     private int Count = 4;
-    private List<GameObject> _items = new List<GameObject>();
+    private List<Pickupable> _items = new List<Pickupable>();
 
     public void Init()
     {
+        if (!_canInit) return;
+        _canInit = false;
         if (_items.Count != 0)
         {
-            _items.ForEach(item => Destroy(item));
-            _items = new List<GameObject>();
+            _items.ForEach(item => {
+                if (!item.isTaken) Destroy(item.gameObject);
+            });
+            _items = new List<Pickupable>();
         }
 
         float XMaxPos = 0.4f;
@@ -35,20 +41,22 @@ public class CubeSpawner : MonoBehaviour
 
             Pos.x += Random.Range(XMinPos, XMaxPos);
 
-            GameObject cube = Instantiate(CubePrefab);
+            Pickupable cube = Instantiate(CubePrefab);
             cube.transform.parent = transform;
             cube.transform.localPosition = Pos;
             _items.Add(cube);
+
+            StartCoroutine(Cooldown());
         }
+    }
+
+    public IEnumerator Cooldown() {
+        yield return new WaitForSeconds(1);
+        _canInit = true;
     }
 
     private void Start()
     {
         Init();
-    }
-
-    public void RemoveFromList(GameObject item)
-    {
-        _items.Remove(item);
     }
 }

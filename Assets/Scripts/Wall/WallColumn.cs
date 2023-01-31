@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WallColumn : MonoBehaviour
 {
-    public int Count => transform.childCount;
+    public int Count;
 
     private void Awake() {
 

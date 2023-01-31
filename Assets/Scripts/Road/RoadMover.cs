@@ -10,9 +10,10 @@ public class RoadMover : MonoBehaviour
     private float _step = 30f;
     public Coroutine MoveRoadsCoroutine;
     public static RoadMover Instance;
-    private Vector3 PosOfReInit = new Vector3(0,0, 210);
+    private Vector3 PosOfReInit = new Vector3(0, 0, 210);
 
-    public void StopMoveRoadsCoroutine() {
+    public void StopMoveRoadsCoroutine()
+    {
         Instance.StopCoroutine(MoveRoadsCoroutine);
     }
 
@@ -32,22 +33,24 @@ public class RoadMover : MonoBehaviour
         PositionRoads(_generator.Roads);
         yield return new WaitUntil(() => GameController.IsStarted);
 
-
         while (GameController.IsStarted)
         {
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(4f);
 
             Vector3 LastPos = _generator.Roads.Last().transform.localPosition;
             Vector3 NextPos = LastPos + (Vector3.forward * _step);
-            GameObject road = _generator.Roads[0];
+            RoadPart road = _generator.Roads[0];
             _generator.Roads.Remove(road);
             _generator.SetRoads(_generator.Roads.Append(road).ToList());
             road.transform.localPosition = NextPos;
-            if (NextPos.z == PosOfReInit.z) road.GetComponent<WallSpawner>().Init();
+            // if (NextPos.z == PosOfReInit.z)
+            road.Walls.Init();
+            // if (NextPos.z == PosOfReInit.z)
+            road.Cubes.Init();
         }
     }
 
-    private void PositionRoads(List<GameObject> roads)
+    private void PositionRoads(List<RoadPart> roads)
     {
         Vector3 Pos = Vector3.zero;
 

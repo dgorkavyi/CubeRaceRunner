@@ -6,18 +6,15 @@ using System.Linq;
 public class RoadGenerator : MonoBehaviour
 {
     public int Count = 7;
-    public GameObject Road;
-    private List<GameObject> _roads;
-    public List<GameObject> Roads => _roads;
-    public void SetRoads(List<GameObject> list) => _roads = list;
+    public RoadPart Road;
+    private List<RoadPart> _roads;
+    public List<RoadPart> Roads => _roads;
+    public void SetRoads(List<RoadPart> list) => _roads = list;
     public bool IsGenerated = false;
 
     void Start()
     {
-        _roads = GetComponentsInChildren<RoadPart>()
-            .ToList<RoadPart>()
-            .Select<RoadPart, GameObject>(item => item.gameObject)
-            .ToList<GameObject>();
+        _roads = GetComponentsInChildren<RoadPart>().ToList();
 
         Generate(Count);
     }
@@ -26,7 +23,7 @@ public class RoadGenerator : MonoBehaviour
     {
         for (int i = 0; i < value; i++)
         {
-            GameObject road = Instantiate(Road);
+            RoadPart road = Instantiate(Road);
             
             road.transform.parent = transform;
             _roads.Add(road);

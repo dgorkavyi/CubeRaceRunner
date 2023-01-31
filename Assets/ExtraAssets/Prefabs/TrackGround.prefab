@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91f20b6d3072d684480a9ca5fbfbf866, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CubePrefab: {fileID: 3481367610352654943, guid: 085ad57d0f0d5924f8ec77fd5eeb27f9,
+  CubePrefab: {fileID: -8614386073358439514, guid: 085ad57d0f0d5924f8ec77fd5eeb27f9,
     type: 3}
   Distance: 0.09
 --- !u!1 &8635103698508136598
@@ -179,6 +179,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51e27f7b811f93e468dedf0715097f4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Cubes: {fileID: 0}
+  Walls: {fileID: 0}
 --- !u!65 &5503849354569763530
 BoxCollider:
   m_ObjectHideFlags: 0

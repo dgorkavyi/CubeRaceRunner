@@ -56,6 +56,8 @@ public class CubeContainer : MonoBehaviour
 
     public void Remove(int value)
     {
+        Debug.Log(value);
+        
         _cubes.Reverse();
         List<Pickupable> cubesToRemove = _cubes.Take(value).ToList();
         _cubes = _cubes.Skip(value).ToList();
@@ -66,6 +68,6 @@ public class CubeContainer : MonoBehaviour
             Dettach(cube);
         });
 
-        StartCoroutine("DestroyDettached", cubesToRemove);
+        StartCoroutine(DestroyDettached(cubesToRemove));
     }
 }
