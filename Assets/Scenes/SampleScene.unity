@@ -157,6 +157,7 @@ MonoBehaviour:
   _restartBtn: {fileID: 681609268}
   _moveBtn: {fileID: 536294012}
   _roadMover: {fileID: 749821031}
+  _cameraFollow: {fileID: 330585548}
 --- !u!4 &254162952
 Transform:
   m_ObjectHideFlags: 0

@@ -17,6 +17,8 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private RoadMover _roadMover;
 
+    [SerializeField] private CameraFollow _cameraFollow;
+
     public static GameController _instance;
     public static PlayerInput input;
     public static bool IsStarted { get; private set; } = false;
@@ -51,6 +53,7 @@ public class GameController : MonoBehaviour
 
     public static void Defeat()
     {
+        _instance._cameraFollow.enabled = false;
         RoadMover.Instance.StopMoveRoadsCoroutine();
         IsStarted = false;
         PlayerDefeat.Instance.Defeat();
